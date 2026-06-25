@@ -126,17 +126,24 @@ elif section == "Live Intelligence":
             st.success("✅ LOW RISK HOUR")
 
         st.markdown(f"### 🤖 AI Confidence Score: **{confidence:.2f}%**")
-
+        
         # Metrics
         m1, m2, m3, m4, m5 = st.columns(5)
-        m1.metric("Crime Count", int(sample["crime_count"]))
-        m2.metric("Crash Count", int(sample["crash_count"]))
-        m3.metric("Rainfall", float(sample["PRCP"]))
-        m4.metric("Temperature", float(sample["TAVG"]))
-        m5.metric("Peak Hour", int(sample["is_peak_hour"]))
+        
+        crime_count = sample["crime_count"].iloc[0]
+        crash_count = sample["crash_count"].iloc[0]
+        rainfall = sample["PRCP"].iloc[0]
+        temperature = sample["TAVG"].iloc[0]
+        peak_hour = sample["is_peak_hour"].iloc[0]
+        
+        m1.metric("Crime Count", int(crime_count))
+        m2.metric("Crash Count", int(crash_count))
+        m3.metric("Rainfall", float(rainfall))
+        m4.metric("Temperature", float(temperature))
+        m5.metric("Peak Hour", int(peak_hour))
 
         st.markdown("---")
-
+        
         # ----------------------------------------------------
         # Dynamic Charts
         # ----------------------------------------------------
